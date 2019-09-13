@@ -1,0 +1,20 @@
+If you want to use different textures while editing, you can replace any texture as long as it uses the same exact name the original texture was using.
+
+13 textures, not properly ordered in the texture list
+Improper texture values (negatives for example) are set to 5: Default
+
+Default Krunker texture configuration
+"t":
+0 / no parameter = Wall
+1 = Dirt
+2 = Floor
+3 = Grid
+4 = Grey
+5 = Default
+6 = Roof
+7 = Flag
+8 = Grass
+9 = Check
+10 = Lines
+11 = Brick
+12 = Link
