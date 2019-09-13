@@ -26,27 +26,27 @@ You'll obviously need to install Blender. Do this first.
 
 A general prerequisite knowledge of Blender is required in advanced. However, you do not need to know much more than the following basics for cube manipulation:
 
-	-Left Click selects objects
-	-Shift Left Click selects multiple objects
-	-Use the Gizmo (the thing with arrows on top of a selection) to manipulate it, or use the options below
-	-G key *Grabs* the selection and moves it, ignoring axis
-	-R key *Rotates* the selection, ignoring axis
-	-S key *Scales* the selection, ignoring axis
-	-Press X, Y, or Z after pressing one of the above manipulation keys to perform the action only on that axis (G followed by X will move the selection on the X axis)
-	-Press Shift-X, Shift-Y, or Shift-Z after pressing one of the above manipulation keys to shift the selection IGNORING the axis you pressed (S followed by Shift-Z will scale the selection on the X and Y axes)
-	-Typing a numerical value after doing any combination of the above allows you to shift the selection by that value (S followed by Y followed by -1 will mirror the selection along the Y axis)
-	-Shift-D **Duplicates** the selection
-	-Middle Mouse rotates the camera
-	-Shift Middle Mouse pans the camera
-	-Scroll Wheel zooms the camera
-	-Tab shifts between Object Mode and Edit Mode
+- Left Click selects objects
+- Shift Left Click selects multiple objects
+- Use the Gizmo (the thing with arrows on top of a selection) to manipulate it, or use the options below
+- G key *Grabs* the selection and moves it, ignoring axis
+- R key *Rotates* the selection, ignoring axis
+- S key *Scales* the selection, ignoring axis
+- Press X, Y, or Z after pressing one of the above manipulation keys to perform the action only on that axis (G followed by X will move the selection on the X axis)
+- Press Shift-X, Shift-Y, or Shift-Z after pressing one of the above manipulation keys to shift the selection IGNORING the axis you pressed (S followed by Shift-Z will scale the selection on the X and Y axes)
+- Typing a numerical value after doing any combination of the above allows you to shift the selection by that value (S followed by Y followed by -1 will mirror the selection along the Y axis)
+- Shift-D **Duplicates** the selection
+- Middle Mouse rotates the camera
+- Shift Middle Mouse pans the camera
+- Scroll Wheel zooms the camera
+- Tab shifts between Object Mode and Edit Mode
 
 ### Tool Basics
 Install the two addon scripts packaged in the Scripts folder. Go to Edit > Preferences > Add-ons and press the Install button on the top right of the page. After doing so, tick the checkbox next to *Krunker Level Exporter* and *Krunker Object Fit to Grid* to enable them in Blender. You may have to restart Blender after this.
 
 The *Krunker Level Exporter* script adds a dialog to File > Export called "Krunker Level Data (.txt)". This will generate a valid Krunker level out of the Blender file data, with a couple of additional options available to you in the bottom left of the screen.
 
-[Exporter Menu](tutorial_images/1_Export.png)
+![Exporter Menu](https://raw.githubusercontent.com/ZanaDev/Krunker-Blender-Exporter/master/tutorial_images/1_Export.png)
 
 The options are mostly self-explanatory, and you can hover over the value for each one to see more detail about what each one does. 
 
@@ -59,7 +59,7 @@ First, make a duplicate of the "Krunker_Level_Framework.blend" file, and rename 
 
 Opening your new map will show show you a Blender model with a couple of objects: a floor, a floating cube, and a PLAYER_SIZE_REFERENCE object (the red object shown in the image below). 
 
-[Initial Scene File](tutorial_images/2_Scene.png)
+![Initial Scene File](https://raw.githubusercontent.com/ZanaDev/Krunker-Blender-Exporter/master/tutorial_images/2_Scene.jpg)
 
 Create duplicates of either the floor or the floating cube, and scale or shift their faces around however you'd like, making sure to remember that they need to be rectangular prisms (Krunker cubes!) **DO NOT COPY FROM THE PLAYER_SIZE_REFERENCE OBJECT** (this object is a reference to a Krunker player's exact size, and is not meant to be copied). You can create copies of your copies without any issue as well. Remember to use the *Shift-F* keybind after scaling an object to make sure that it's on-grid. This does not need to be done if you only move an object's faces one at a time.
 
@@ -68,7 +68,7 @@ It's highly recommended that you do not disable snapping.
 ### Texturing and Coloring
 Click on a cube, and then click on the Materials tab
 
-[Materials](tutorial_images/3_Materials.png)
+![Materials](https://raw.githubusercontent.com/ZanaDev/Krunker-Blender-Exporter/master/tutorial_images/3_Materials.png)
 
 The cube should have a default material called Demo Material. This material contains the Color, Emission Color, and Texture value typically used by Krunker.
 
@@ -93,7 +93,7 @@ Keep in mind that textures and colors won't look exactly the same in Blender as 
 ### Cube Properties
 The tab on the right side of the screen shows some helpful information, including location, rotation, dimensions, and Krunker specific custom properties. You can edit these values on this tab, but make sure they are whole numbers. If you don't see this tab, press **N**. 
 
-[Properties Menu](tutorial_images/4_Props.png)
+![Properties Menu](https://raw.githubusercontent.com/ZanaDev/Krunker-Blender-Exporter/master/tutorial_images/4_Props.png)
 
 You can change a few of a Cube's Krunker engine properties from this menu, presently the following:
 	
@@ -106,16 +106,16 @@ Any non-listed properties are set to their defaults and must be adjusted in the 
 ### Tips and Tricks
 You can adjust the Grid Scale from the following menu. Make sure that the value is a whole number that is a multiple of 2 (4, 6, 8, 10, etc.)
 
-[Grid Scaling](tutorial_images/5_Scale.png)
+![Grid Scaling](https://raw.githubusercontent.com/ZanaDev/Krunker-Blender-Exporter/master/tutorial_images/5_Scale.png)
 
 You can flip an object or group of objects by pressing S to scale, pressing a key to choose an axis (X, Y, or Z), and typing -1. This maintains collision as the object is not rotated.
 
 You can change between Global and Local object orientation by pressing the Comma (,) key or through this menu:
 
-[Orientation Menu](tutorial_images/6_Orient.png)
+![Orientation Menu](https://raw.githubusercontent.com/ZanaDev/Krunker-Blender-Exporter/master/tutorial_images/6_Orient.png)
 
 You may want to look up how to use pivot points within Blender, as they can make complex design much easier.
 
 ### Known Issues
-	-Deleting an object and then trying to export will cause the export to fail. Select any random object and then try exporting again. I'm probably not fixing this one.
-	-Grid Scale of 1 or not a multiple of 2 is very dangerous, don't use them.
+- Deleting an object and then trying to export will cause the export to fail. Select any random object and then try exporting again. I'm probably not fixing this one.
+- Grid Scale of 1 or not a multiple of 2 is very dangerous, don't use them.
