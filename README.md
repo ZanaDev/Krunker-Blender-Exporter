@@ -61,7 +61,7 @@ Opening your new map will show show you a Blender model with a couple of objects
 
 ![Initial Scene File](https://raw.githubusercontent.com/ZanaDev/Krunker-Blender-Exporter/master/tutorial_images/2_Scene.jpg)
 
-Create duplicates of either the floor or the floating cube, and scale or shift their faces around however you'd like, making sure to remember that they need to be rectangular prisms (Krunker cubes!) **DO NOT COPY FROM THE PLAYER_SIZE_REFERENCE OBJECT** (this object is a reference to a Krunker player's exact size, and is not meant to be copied). You can create copies of your copies without any issue as well. Remember to use the *Shift-F* keybind after scaling an object to make sure that it's on-grid. This does not need to be done if you only move an object's faces one at a time.
+Create duplicates of either the floor or the floating cube **IN OBJECT MODE** (do not copy objects while in edit mode), and scale or shift their faces around however you'd like, making sure to remember that they need to be rectangular prisms (Krunker cubes!) **DO NOT COPY FROM THE PLAYER_SIZE_REFERENCE OBJECT** (this object is a reference to a Krunker player's exact size, and is not meant to be copied). You can create copies of your copies without any issue as well. Remember to use the *Shift-F* keybind after scaling an object to make sure that it's on-grid. This does not need to be done if you only move an object's faces one at a time.
 
 It's highly recommended that you do not disable snapping.
 
