@@ -3,7 +3,7 @@ bl_info = {
 	"author": "Guest_Fast",
 	"description": "Exports cubework for the game Krunker",
 	"category": "Import-Export",
-	"version":(1, 0),
+	"version":(1, 1),
 	"blender":(2, 80, 0),
 	"location": "File > Export",
 }
@@ -13,9 +13,19 @@ import math
 import json
 from mathutils import Vector, Matrix
 
-#probably is dumb, doesn't account for some blender voodoo
-def to_rgb(x):
-	return math.floor(255 * x)
+def to_rgb(linear):
+	#linear color space to rgb approximation
+	# if 0 < L < 0.0031308 = L * 12.92
+	# if 0.0031308 < L < 1 = 1.055 * L^(1/2.4) - 0.055
+	#amazing
+	converted = 0
+
+	if 0 <= linear and linear <= 0.0031308:
+		converted = linear * 12.92
+	elif 0.0031308 < linear and linear <= 1:
+		converted = (1.055 * (linear ** (1 / 2.4))) - 0.055
+
+	return round(converted * 255)
 
 def clamp(x): 
 	return max(0, min(x, 255))
@@ -185,7 +195,7 @@ def dump_cubes_data(vertical_offset, rotation_collide_disabled):
 				(round(shift["x"] + vertical_offset)),
 			]
 
-			#Colors
+			#Colors, textures
 			material_options = o.active_material.node_tree.nodes["Principled BSDF"].inputs
 
 			color_main = material_options["Base Color"].default_value
