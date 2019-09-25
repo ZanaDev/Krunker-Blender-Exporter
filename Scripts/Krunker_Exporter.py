@@ -3,7 +3,7 @@ bl_info = {
 	"author": "Guest_Fast",
 	"description": "Exports cubework for the game Krunker",
 	"category": "Import-Export",
-	"version":(1, 1),
+	"version":(1, 2),
 	"blender":(2, 80, 0),
 	"location": "File > Export",
 }
@@ -14,10 +14,7 @@ import json
 from mathutils import Vector, Matrix
 
 def to_rgb(linear):
-	#linear color space to rgb approximation
-	# if 0 < L < 0.0031308 = L * 12.92
-	# if 0.0031308 < L < 1 = 1.055 * L^(1/2.4) - 0.055
-	#amazing
+	#linear color space to sRGB approximation
 	converted = 0
 
 	if 0 <= linear and linear <= 0.0031308:
@@ -32,6 +29,14 @@ def clamp(x):
 
 def build_hex_string(r, g, b):
 	return "#{0:02x}{1:02x}{2:02x}".format(clamp(r), clamp(g), clamp(b))
+
+def color_to_hex(color):
+	color_r = to_rgb(color[0])
+	color_g = to_rgb(color[1])
+	color_b = to_rgb(color[2])
+	color_hex = build_hex_string(color_r, color_g, color_b)
+
+	return color_hex
 
 #Validates key and checks for input value match
 def property_is_value(obj, name, value):
@@ -199,16 +204,10 @@ def dump_cubes_data(vertical_offset, rotation_collide_disabled):
 			material_options = o.active_material.node_tree.nodes["Principled BSDF"].inputs
 
 			color_main = material_options["Base Color"].default_value
-			color_main_r = to_rgb(color_main[0])
-			color_main_g = to_rgb(color_main[1])
-			color_main_b = to_rgb(color_main[2])
-			color_main_hex = build_hex_string(color_main_r, color_main_g, color_main_b)
+			color_main_hex = color_to_hex(color_main)
 
 			color_emission = material_options["Emission"].default_value
-			color_emission_r = to_rgb(color_emission[0])
-			color_emission_g = to_rgb(color_emission[1])
-			color_emission_b = to_rgb(color_emission[2])
-			color_emission_hex = build_hex_string(color_emission_r, color_emission_g, color_emission_b)
+			color_emission_hex = color_to_hex(color_emission)
 
 			#Texture Setup
 			subsurface_links = material_options["Subsurface Color"].links
@@ -230,7 +229,7 @@ def dump_cubes_data(vertical_offset, rotation_collide_disabled):
 			}
 
 			#Custom Properties
-			#They have to be handled this way as the game sometimes checks for the presence of a
+			#They have to be handled this way as Krunker sometimes checks for the presence of a
 			#key to determine if a setting is active or not
 			#The actual value is not always relevant (unfortunately)
 
